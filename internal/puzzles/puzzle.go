@@ -12,6 +12,7 @@ type Puzzle interface {
 }
 
 func Solve(p Puzzle, file *os.File) {
+	// load input and solve
 	if err := p.LoadInput(file); err != nil {
 		fmt.Printf("error loading input: %v\n", err)
 		os.Exit(1)
