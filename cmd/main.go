@@ -9,6 +9,7 @@ import (
 
 var puzzleList = map[int]puzzles.Puzzle{
 	1: &puzzles.Day1{},
+	2: &puzzles.Day2{},
 }
 
 func main() {
