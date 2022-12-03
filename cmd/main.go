@@ -10,6 +10,7 @@ import (
 var puzzleList = map[int]puzzles.Puzzle{
 	1: &puzzles.Day1{},
 	2: &puzzles.Day2{},
+	3: &puzzles.Day3{},
 }
 
 func main() {
