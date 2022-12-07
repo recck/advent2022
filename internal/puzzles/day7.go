@@ -8,35 +8,15 @@ import (
 	"strings"
 )
 
-type fileType int
-
-const (
-	regular fileType = iota
-	dir
-)
-
-type file struct {
-	name     string
-	size     int
-	fType    fileType
-	subFiles []file
-}
-
-func (f *file) isDir() bool {
-	return f.fType == dir
-}
-
 type Day7 struct {
-	fileTree map[string][]file
+	fileTree map[string]int
 }
 
 func (d *Day7) getDirSum(dir string) int {
 	sum := 0
 	for dirs := range d.fileTree {
 		if strings.Contains(dirs, dir) {
-			for f := range d.fileTree[dirs] {
-				sum += d.fileTree[dirs][f].size
-			}
+			sum += d.fileTree[dirs]
 		}
 	}
 
@@ -81,7 +61,7 @@ func (d *Day7) LoadInput(f *os.File) error {
 	var curDir string
 	var dirs []string
 
-	tree := make(map[string][]file)
+	tree := make(map[string]int)
 
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
@@ -103,27 +83,18 @@ func (d *Day7) LoadInput(f *os.File) error {
 			}
 		} else {
 			// we must be ls-ing
-			newFile := file{
-				name:     chunks[1],
-				size:     0,
-				fType:    0,
-				subFiles: []file{},
-			}
 			if chunks[0] == "dir" {
-				newFile.fType = dir
-				dirString := strings.Join(append(dirs, newFile.name), "_")
+				dirString := strings.Join(append(dirs, chunks[1]), "_")
 				if _, ok := tree[dirString]; !ok {
-					tree[dirString] = []file{}
+					tree[dirString] = 0
 				}
 			} else {
 				fileSize, _ := strconv.Atoi(chunks[0])
-				newFile.fType = regular
-				newFile.size = fileSize
 				dirString := strings.Join(dirs, "_")
 				if existingDir, ok := tree[dirString]; !ok {
-					tree[dirString] = []file{newFile}
+					tree[dirString] = fileSize
 				} else {
-					tree[dirString] = append(existingDir, newFile)
+					tree[dirString] = existingDir + fileSize
 				}
 			}
 		}
