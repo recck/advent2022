@@ -24,7 +24,8 @@ func (d *Day8) Part1() any {
 		for _, adjacentPoint := range adjacentPoints {
 		nextAdjPoint:
 			for i := 1; ; i++ {
-				if existingTree, ok := d.trees[point.Add(adjacentPoint.Mul(i))]; !ok {
+				nextPoint := point.Add(adjacentPoint.Mul(i))
+				if existingTree, ok := d.trees[nextPoint]; !ok {
 					visible++
 					break nextPoint // mark as visible, move onto next tree
 				} else if existingTree >= treeHeight {
@@ -45,7 +46,8 @@ func (d *Day8) Part2() any {
 		curScore := 1
 		for _, adjacentPoint := range adjacentPoints {
 			for i := 1; ; i++ {
-				if existingTree, ok := d.trees[point.Add(adjacentPoint.Mul(i))]; !ok || existingTree >= treeHeight {
+				nextPoint := point.Add(adjacentPoint.Mul(i))
+				if existingTree, ok := d.trees[nextPoint]; !ok || existingTree >= treeHeight {
 					curScore *= i - bVal[ok]
 					break
 				}
