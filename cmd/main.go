@@ -16,6 +16,7 @@ var puzzleList = map[int]puzzles.Puzzle{
 	6: &puzzles.Day6{},
 	7: &puzzles.Day7{},
 	8: &puzzles.Day8{},
+	9: &puzzles.Day9{},
 }
 
 func main() {
