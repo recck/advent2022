@@ -8,15 +8,16 @@ import (
 )
 
 var puzzleList = map[int]puzzles.Puzzle{
-	1: &puzzles.Day1{},
-	2: &puzzles.Day2{},
-	3: &puzzles.Day3{},
-	4: &puzzles.Day4{},
-	5: &puzzles.Day5{},
-	6: &puzzles.Day6{},
-	7: &puzzles.Day7{},
-	8: &puzzles.Day8{},
-	9: &puzzles.Day9{},
+	1:  &puzzles.Day1{},
+	2:  &puzzles.Day2{},
+	3:  &puzzles.Day3{},
+	4:  &puzzles.Day4{},
+	5:  &puzzles.Day5{},
+	6:  &puzzles.Day6{},
+	7:  &puzzles.Day7{},
+	8:  &puzzles.Day8{},
+	9:  &puzzles.Day9{},
+	10: &puzzles.Day10{},
 }
 
 func main() {
